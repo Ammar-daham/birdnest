@@ -3,7 +3,7 @@ const express = require('express')
 const request = require('request')
 const parser = require('xml2json')
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 4000
 
 const app = express()
 
@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     next();
 })
 
-app.get('/', (req, res) => {
+app.get('/drones', (req, res) => {
     request(
         {url: 'https://assignments.reaktor.com/birdnest/drones'},
         (error, response, body) => {
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
             }
 
             let json = parser.toJson(body);
-            console.log("to json -> %s ", json.length)
+            //console.log("to json -> %s ", json)
         }
     )
 })
