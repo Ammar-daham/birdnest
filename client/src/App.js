@@ -3,12 +3,14 @@ import axios from 'axios'
 
 
 function App() {
-  const [drones, setDrones] = useState()
- 
+  const [drones, setDrones] = useState({})
+  console.log('drones: ', drones)
   useEffect(() => {
-    const response =axios.get('http://localhost:4000/drones').then((response) => {
+    axios.get('http://localhost:4000/drones')
+    .then((response) => {
+      setDrones(response.data)
+      console.log('response: ', response.data)
     })
-    console.log('response: ', response)
     
   }, [])
   

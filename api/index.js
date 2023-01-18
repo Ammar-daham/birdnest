@@ -13,6 +13,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/drones', (req, res) => {
+    //res.send("Hello Express!")
     request(
         {url: 'https://assignments.reaktor.com/birdnest/drones'},
         (error, response, body) => {
@@ -21,9 +22,11 @@ app.get('/drones', (req, res) => {
             }
 
             let json = parser.toJson(body);
-            //console.log("to json -> %s ", json)
+            console.log("to json -> %s ", json)
+            res.send(json)
         }
     )
+    //res.send(request)
 })
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
